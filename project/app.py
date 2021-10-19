@@ -30,8 +30,8 @@ def currencyReturn():
         to = request.args['to']
         comingFrom = request.args['from']
         amount = float(request.args['amount'])
-        if(to == comingFrom):
-            return render_template('base.html', comingFrom=comingFrom, to=to, amount=amount, output=amount)
+        # if(to == comingFrom):
+        #     return render_template('base.html', comingFrom=comingFrom, to=to, amount=amount, output=amount)
         output = getOutput(to, comingFrom, amount)
         return render_template('base.html', comingFrom=comingFrom, to=to, amount=amount, output=output, currency=currency)
     except:
