@@ -16,7 +16,10 @@
         <label for="">Currency From:</label>
         <select name="from" id="">
             <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
+            {% for key in currency %}
+            <option value="{{key}}">{{key}}</option>
+            {% endfor %}
+            <!-- <option value="EUR">EUR</option>
             <option value="JPY">JPY</option>
             <option value="BGN">BGN</option>
             <option value="CZK">CZK</option>
@@ -42,12 +45,15 @@
             <option value="PHP">PHP</option>
             <option value="SGD">SGD</option>
             <option value="THB">THB</option>
-            <option value="ZAR">ZAR</option>
+            <option value="ZAR">ZAR</option> -->
         </select>
         <label for="">Currency To:</label>
         <select name="to" id="">
             <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
+            {% for key in currency %}
+            <option value="{{key}}">{{key}}</option>
+            {% endfor %}
+            <!-- <option value="EUR">EUR</option>
             <option value="JPY">JPY</option>
             <option value="BGN">BGN</option>
             <option value="CZK">CZK</option>
@@ -73,7 +79,7 @@
             <option value="PHP">PHP</option>
             <option value="SGD">SGD</option>
             <option value="THB">THB</option>
-            <option value="ZAR">ZAR</option>
+            <option value="ZAR">ZAR</option> -->
         </select>
         <label for="">Amount:</label>
         <input type="text" name="amount">

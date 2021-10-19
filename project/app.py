@@ -14,7 +14,8 @@ def front_demo(id):
 
 @app.route('/')
 def front_page():
-    return render_template('base.html')
+    currency = c.get_rates('USD')
+    return render_template('base.html', currency = currency)
 
 def getOutput(conversionTo, conversionFrom, amount):
     r = c.get_rates(conversionFrom)
@@ -24,6 +25,7 @@ def getOutput(conversionTo, conversionFrom, amount):
 
 @app.route('/get-currency')
 def currencyReturn():
+    currency = c.get_rates('USD')
     try:
         to = request.args['to']
         comingFrom = request.args['from']
@@ -31,8 +33,8 @@ def currencyReturn():
         if(to == comingFrom):
             return render_template('base.html', comingFrom=comingFrom, to=to, amount=amount, output=amount)
         output = getOutput(to, comingFrom, amount)
-        return render_template('base.html', comingFrom=comingFrom, to=to, amount=amount, output=output)
+        return render_template('base.html', comingFrom=comingFrom, to=to, amount=amount, output=output, currency=currency)
     except:
         flash('Not a valid amount')
         Error = True
-        return render_template('base.html', Error=Error)
+        return render_template('base.html', Error=Error, currency=currency)
