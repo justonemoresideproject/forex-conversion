@@ -11,41 +11,64 @@
     {% if t %}
         <h1>{{t}}</h1>
     {% endif %}
-    <h1>Currency Exchange</h1>
     <form action="/get-currency">
-        <label for="">Currency From:</label>
+        <h1>Currency Exchange</h1>
+        <table>
+            <tr>
+                <td class="label">From:</td>
+                <td>
+                    <select name="from" id="">
+                        <option value="USD">USD</option>
+                        {% for key in currency %}
+                        <option value="{{key}}">{{key}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">To:</td>
+                <td>
+                    <select name="to" id="">    
+                        <option value="USD">USD</option>
+                        {% for key in currency %}
+                        <option value="{{key}}">{{key}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Amount:</td>
+                <td>
+                    <input type="text" name="amount">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button>Submit</button>
+                </td>
+            </tr>
+            {% if output %}
+            <tr>
+                <td colspan="2" class="output">
+                    {{amount}} {{comingFrom}} is {{output}} {{to}}
+                </td>
+            </tr>
+            {% elif Error %}
+            <tr>
+                {% for msg in get_flashed_messages() %}
+                <td colspan="2" class="errorMessage">
+                    {{msg}}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endif %}
+        </table>
+        <!-- <label for="">Currency From:</label>
         <select name="from" id="">
             <option value="USD">USD</option>
             {% for key in currency %}
             <option value="{{key}}">{{key}}</option>
             {% endfor %}
-            <!-- <option value="EUR">EUR</option>
-            <option value="JPY">JPY</option>
-            <option value="BGN">BGN</option>
-            <option value="CZK">CZK</option>
-            <option value="DKK">DKK</option>
-            <option value="GBP">GBP</option>
-            <option value="HUF">HUF</option>
-            <option value="PLN">PLN</option>
-            <option value="RON">RON</option>
-            <option value="SEK">SEK</option>
-            <option value="CHF">CHF</option>
-            <option value="ISK">ISK</option>
-            <option value="NOK">NOK</option>
-            <option value="HRK">HRK</option>
-            <option value="RUB">RUB</option>
-            <option value="TRY">TRY</option>
-            <option value="HKD">HKD</option>
-            <option value="IDR">IDR</option>
-            <option value="INR">INR</option>
-            <option value="KRW">KRW</option>
-            <option value="MXN">MXN</option>
-            <option value="MYR">MYR</option>
-            <option value="NZD">NZD</option>
-            <option value="PHP">PHP</option>
-            <option value="SGD">SGD</option>
-            <option value="THB">THB</option>
-            <option value="ZAR">ZAR</option> -->
         </select>
         <label for="">Currency To:</label>
         <select name="to" id="">
@@ -53,39 +76,12 @@
             {% for key in currency %}
             <option value="{{key}}">{{key}}</option>
             {% endfor %}
-            <!-- <option value="EUR">EUR</option>
-            <option value="JPY">JPY</option>
-            <option value="BGN">BGN</option>
-            <option value="CZK">CZK</option>
-            <option value="DKK">DKK</option>
-            <option value="GBP">GBP</option>
-            <option value="HUF">HUF</option>
-            <option value="PLN">PLN</option>
-            <option value="RON">RON</option>
-            <option value="SEK">SEK</option>
-            <option value="CHF">CHF</option>
-            <option value="ISK">ISK</option>
-            <option value="NOK">NOK</option>
-            <option value="HRK">HRK</option>
-            <option value="RUB">RUB</option>
-            <option value="TRY">TRY</option>
-            <option value="HKD">HKD</option>
-            <option value="IDR">IDR</option>
-            <option value="INR">INR</option>
-            <option value="KRW">KRW</option>
-            <option value="MXN">MXN</option>
-            <option value="MYR">MYR</option>
-            <option value="NZD">NZD</option>
-            <option value="PHP">PHP</option>
-            <option value="SGD">SGD</option>
-            <option value="THB">THB</option>
-            <option value="ZAR">ZAR</option> -->
         </select>
         <label for="">Amount:</label>
         <input type="text" name="amount">
-        <button>Submit</button>
+        <button>Submit</button> -->
     </form>
-    {% if output %}
+    <!-- {% if output %}
     <table id="outputTable">
         <tr>
             <td>{{amount}} {{comingFrom}} is {{output}} {{to}}</td>
@@ -93,8 +89,8 @@
     </table>
     {% elif Error %}
     {% for msg in get_flashed_messages() %}
-    <h3>{{msg}}</h3>
+    <h3 class="errorMessage">{{msg}}</h3>
     {% endfor %}
-    {% endif %}
+    {% endif %} -->
 </body>
 </html>

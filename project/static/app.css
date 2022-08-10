@@ -1,8 +1,27 @@
-h1 {
-    text-decoration: underline;
-    margin-bottom: 2rem;
+body {
+    background-color: rgb(238, 200, 129);
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
 }
 
-#output {
-    font-weight: bold;
+table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.errorMessage {
+    color: blue;
+    background-color: orangered;
+    font-size: 1.5rem;
+}
+
+.output {
+    background-color: green;
+}
+
+button {
+    width: 100%;
+    font-size: 1rem;
 }

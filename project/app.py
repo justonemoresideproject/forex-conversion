@@ -18,9 +18,11 @@ def front_page():
     return render_template('base.html', currency = currency)
 
 def getOutput(conversionTo, conversionFrom, amount):
+    if conversionTo == conversionFrom:
+        return round(amount, 2)
     r = c.get_rates(conversionFrom)
     output = r[conversionTo] * float(amount)
-    return output
+    return round(output, 2)
     
 
 @app.route('/get-currency')
@@ -29,10 +31,13 @@ def currencyReturn():
     try:
         to = request.args['to']
         comingFrom = request.args['from']
-        amount = float(request.args['amount'])
+        amount = round(float(request.args['amount']), 2)
+
         # if(to == comingFrom):
         #     return render_template('base.html', comingFrom=comingFrom, to=to, amount=amount, output=amount)
+
         output = getOutput(to, comingFrom, amount)
+
         return render_template('base.html', comingFrom=comingFrom, to=to, amount=amount, output=output, currency=currency)
     except:
         flash('Not a valid amount')
